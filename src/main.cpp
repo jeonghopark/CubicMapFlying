@@ -6,20 +6,18 @@
 //========================================================================
 int main( ){
     
-    
     ofGLFWWindowSettings settings;
     
-    settings.width = 700;
-    settings.height = 800;
+    settings.width = 300;
+    settings.height = 300;
     settings.setPosition(ofVec2f(0,0));
     settings.resizable = false;
     shared_ptr<ofAppBaseWindow> guiWindow = ofCreateWindow(settings);
     
-    settings.width = 1920;
-    settings.height = 1080;
+    settings.width = 1280;
+    settings.height = settings.width * 9 / 16.0;
+    settings.setPosition(ofVec2f(100,0));
     settings.resizable = true;
-    settings.setPosition( ofVec2f(settings.width, 0 ));
-    settings.windowMode = OF_FULLSCREEN;
     shared_ptr<ofAppBaseWindow> mainWindow = ofCreateWindow(settings);
     
     shared_ptr<GuiApp> guiApp(new GuiApp);
@@ -29,6 +27,5 @@ int main( ){
     ofRunApp(mainWindow, mainApp);
     ofRunApp(guiWindow, guiApp);
     ofRunMainLoop();
-
     
 }
