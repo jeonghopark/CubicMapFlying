@@ -9,7 +9,7 @@ int main( ){
     
     ofGLFWWindowSettings settings;
     
-    settings.width = 800;
+    settings.width = 700;
     settings.height = 800;
     settings.setPosition(ofVec2f(0,0));
     settings.resizable = false;
@@ -29,6 +29,6 @@ int main( ){
     ofRunApp(mainWindow, mainApp);
     ofRunApp(guiWindow, guiApp);
     ofRunMainLoop();
-
+    
     
 }
