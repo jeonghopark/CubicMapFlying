@@ -15,7 +15,6 @@ void ofApp::setup(){
 //    ofEnableAlphaBlending();
     
     
-    
     buildingsMesh_top = buildingsMesh("vectorTile_16_33975_22294.json");
     roadsPolyline_top = roadsPolyline("vectorTile_16_33975_22294.json");
     
