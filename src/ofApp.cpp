@@ -13,17 +13,6 @@ void ofApp::setup(){
     ofSetFrameRate(60);
     ofEnableDepthTest();
     
-    
-//    gui.setup();
-//    gui.add(colorFassade.setup("colorFassade", ofColor(0, 0, 0), ofColor(0, 0), ofColor(255, 255)));
-//    gui.add(colorBackground.setup("colorBackground", ofColor(0, 0, 0), ofColor(0, 0), ofColor(255, 255)));
-//    gui.add(colorBuilding.setup("colorBuilding", ofColor(255, 255, 255), ofColor(0, 0), ofColor(255, 255)));
-//    gui.add(colorStreet.setup("colorStreet", ofColor(255, 255, 255), ofColor(0, 0), ofColor(255, 255)));
-//    gui.add(streetWidth.setup("Street Width", 0, 1, 10));
-//    gui.add(movingObjectSize.setup("Moving Size", 1, 3, 40));
-    
-//    originArchBase.load("Fassade IF10 - white_1260x800.png");
-
     buildingsMesh_top = buildingsMesh("vectorTile_16_33975_22294.json");
     roadsPolyline_top = roadsPolyline("vectorTile_16_33975_22294.json");
 
@@ -56,20 +45,6 @@ void ofApp::setup(){
     mainLight.setSpecularColor(ofColor(170, 170, 170));
     
  
-//    fassadeImg.load("Fassade IF10 - white_1260x800.png");
-//
-//    topleft = ofPoint(100, 100);
-//    topright = ofPoint(1180, 100);
-//    buttomleft = ofPoint(1180, 700);
-//    buttomright = ofPoint(100, 700);
-//    
-//    
-//    quadManager.addQuad(ofPoint(0, 0), ofPoint(fassadeImg.getWidth(), 0), ofPoint(fassadeImg.getWidth(), fassadeImg.getHeight()), ofPoint(0, fassadeImg.getHeight()), topleft, topright, buttomleft, buttomright);
-//    quad = quadManager.getQuad(0);
-//    
-//    ofxQuadSourceImage* imageSource =  new ofxQuadSourceImage(&fassadeImg);
-//    quad->setSource(imageSource);
-
 }
 
 //--------------------------------------------------------------
@@ -79,8 +54,6 @@ void ofApp::update(){
     roadMoving_top = sin( ofDegToRad(roadMovingFactor_top) ) * 0.5 + 0.5;
     
     
-//    quadManager.update();
-
 }
 
 
@@ -90,7 +63,7 @@ void ofApp::draw(){
     //    ofEnableLighting();
     
     
-    ofBackground(0);
+    ofBackground(gui->colorBackground);
     ofPopStyle();
     
     camera.begin();
@@ -189,7 +162,7 @@ void ofApp::drawBuildingsMesh(vector< ofMesh > _mesh, ofVec3f _position, ofVec3f
     ofPopStyle();
     
     ofPushStyle();
-    ofSetColor(255, 160);
+    ofSetColor(gui->colorBuilding);
     
     for (int i=0; i<_mesh.size(); i++) {
         vector<ofVec3f> & _v = _mesh[i].getVertices();
@@ -235,15 +208,15 @@ void ofApp::drawRoadPolyLineMoving(vector< ofPolyline > _ofPolyline, ofVec3f _po
     
     
     ofPushStyle();
-    ofSetColor(255, 120);
+    ofSetColor(gui->colorStreet);
 
-    ofSetLineWidth(1);
+    ofSetLineWidth(gui->streetWidth);
     for (int i=0; i<_ofPolyline.size(); i++) {
         _ofPolyline[i].draw();
     }
     
     for (int i=0; i<_ofPolyline.size(); i++) {
-        ofDrawCircle(_ofPolyline[i].getPointAtPercent( roadMoving_top ) , 2);
+        ofDrawCircle(_ofPolyline[i].getPointAtPercent( roadMoving_top ) , gui->movingObjectSize);
     }
     
 
@@ -342,22 +315,6 @@ void ofApp::drawRoadPolyLineMoving(vector< ofPolyline > _ofPolyline, ofVec3f _po
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
  
-//    if (key == '1') {
-//        topleft = ofPoint( mouseX, mouseY );
-//    }
-//    if (key == '2') {
-//        topright = ofPoint( mouseX, mouseY );
-//    }
-//    if (key == '3') {
-//        buttomright = ofPoint( mouseX, mouseY );
-//    }
-//    if (key == '4') {
-//        buttomleft = ofPoint( mouseX, mouseY );
-//    }
-
-//    if (key == 'g') {
-//        bGUI = !bGUI;
-//    }
     
 }
 
@@ -365,10 +322,6 @@ void ofApp::keyPressed(int key){
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
     
-//    if ((key =='1') || (key =='2') || (key =='3') || (key =='4')) {
-//        quad->setOutputPoints(topleft, topright, buttomright, buttomleft);
-//    }
-
 }
 
 //--------------------------------------------------------------
