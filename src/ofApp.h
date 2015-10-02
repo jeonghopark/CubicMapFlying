@@ -1,11 +1,17 @@
 #pragma once
 
 #include "ofMain.h"
-#include "FeatureNode.h"
+#include "GuiApp.h"
 
+#include "FeatureNode.h"
 #include "JsonLoader.h"
 
 #include "ofxJSON.h"
+
+#include "ofxQuadManager.h"
+#include "ofxQuadSourceImage.h"
+
+#include "ofxGui.h"
 
 class ofApp : public ofBaseApp{
 
@@ -23,6 +29,10 @@ public:
     void windowResized(int w, int h);
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
+    
+    
+    shared_ptr<GuiApp> gui;
+
     
     ofEasyCam camera;
     ofLight mainLight;
@@ -76,7 +86,28 @@ public:
     void drawBuildingsMesh(vector< ofMesh > _mesh, ofVec3f _position, ofVec3f _rotation);
     void drawRoadPolyLineMoving(vector< ofPolyline > _polyline, ofVec3f _position, ofVec3f _rotation);
   
-    void drawEdgeShape();
-    ofImage originArchBase;
+//    void drawEdgeShape();
+//    ofImage originArchBase;
+//    ofImage fassadeImg;
+
+//    ofxQuad* quad;
+//    ofxQuadManager quadManager;
+//    ofPoint topleft, topright, buttomleft, buttomright;
+    
+//    void drawEdge();
+
+
+//    ofxPanel gui;
+//    ofxColorSlider colorBackground;
+//    ofxColorSlider colorBuilding;
+//    
+//    ofxColorSlider colorStreet;
+//    ofxFloatSlider streetWidth;
+//    ofxFloatSlider movingObjectSize;
+//    
+//    ofxColorSlider colorFassade;
+//    
+//    bool bGUI;
+    
 
 };

@@ -13,7 +13,16 @@ void ofApp::setup(){
     ofSetFrameRate(60);
     ofEnableDepthTest();
     
-    originArchBase.load("Fassade IF10 - white_1280x800.png");
+    
+//    gui.setup();
+//    gui.add(colorFassade.setup("colorFassade", ofColor(0, 0, 0), ofColor(0, 0), ofColor(255, 255)));
+//    gui.add(colorBackground.setup("colorBackground", ofColor(0, 0, 0), ofColor(0, 0), ofColor(255, 255)));
+//    gui.add(colorBuilding.setup("colorBuilding", ofColor(255, 255, 255), ofColor(0, 0), ofColor(255, 255)));
+//    gui.add(colorStreet.setup("colorStreet", ofColor(255, 255, 255), ofColor(0, 0), ofColor(255, 255)));
+//    gui.add(streetWidth.setup("Street Width", 0, 1, 10));
+//    gui.add(movingObjectSize.setup("Moving Size", 1, 3, 40));
+    
+//    originArchBase.load("Fassade IF10 - white_1260x800.png");
 
     buildingsMesh_top = buildingsMesh("vectorTile_16_33975_22294.json");
     roadsPolyline_top = roadsPolyline("vectorTile_16_33975_22294.json");
@@ -46,7 +55,21 @@ void ofApp::setup(){
     mainLight.setDiffuseColor(ofColor(35, 35, 35));
     mainLight.setSpecularColor(ofColor(170, 170, 170));
     
-    
+ 
+//    fassadeImg.load("Fassade IF10 - white_1260x800.png");
+//
+//    topleft = ofPoint(100, 100);
+//    topright = ofPoint(1180, 100);
+//    buttomleft = ofPoint(1180, 700);
+//    buttomright = ofPoint(100, 700);
+//    
+//    
+//    quadManager.addQuad(ofPoint(0, 0), ofPoint(fassadeImg.getWidth(), 0), ofPoint(fassadeImg.getWidth(), fassadeImg.getHeight()), ofPoint(0, fassadeImg.getHeight()), topleft, topright, buttomleft, buttomright);
+//    quad = quadManager.getQuad(0);
+//    
+//    ofxQuadSourceImage* imageSource =  new ofxQuadSourceImage(&fassadeImg);
+//    quad->setSource(imageSource);
+
 }
 
 //--------------------------------------------------------------
@@ -54,6 +77,10 @@ void ofApp::update(){
     
     roadMovingFactor_top = roadMovingFactor_top + 4;
     roadMoving_top = sin( ofDegToRad(roadMovingFactor_top) ) * 0.5 + 0.5;
+    
+    
+//    quadManager.update();
+
 }
 
 
@@ -62,7 +89,10 @@ void ofApp::draw(){
     
     //    ofEnableLighting();
     
-
+    
+    ofBackground(0);
+    ofPopStyle();
+    
     camera.begin();
     
     //    mainLight.enable();
@@ -86,9 +116,6 @@ void ofApp::draw(){
     
     //    mainLight.disable();
     
-
-    
-
     
     camera.end();
     
@@ -97,31 +124,49 @@ void ofApp::draw(){
 
 //    drawEdgeShape();
     
-}
-
-//--------------------------------------------------------------
-void ofApp::drawEdgeShape(){
     
     ofPushStyle();
-    
-//    ofDisableAlphaBlending();
-    
-    ofPushStyle();
-    
-//    ofSetColor(255, 255);
-    originArchBase.draw(0, 400-305);
-    
-    ofPopStyle();
 
     ofSetColor(0);
-    ofDrawRectangle( 0, 0, ofGetWidth(), 400-305 );
-    ofDrawRectangle( 0, 400-305 + 610, ofGetWidth(), 400-305 );
-    
-//    ofEnableAlphaBlending();
+//    quadManager.draw();
     
     ofPopStyle();
     
+//    quadManager.getQuad(0)->drawOutputConfig();
+//    drawEdge();
+
+    
+//    if (bGUI) {
+//        gui.draw();
+//    }
+
+    
+    
 }
+
+////--------------------------------------------------------------
+//void ofApp::drawEdgeShape(){
+//    
+//    ofPushStyle();
+//    
+////    ofDisableAlphaBlending();
+//    
+//    ofPushStyle();
+//    
+////    ofSetColor(255, 255);
+//    originArchBase.draw(0, 400-305);
+//    
+//    ofPopStyle();
+//
+//    ofSetColor(0);
+//    ofDrawRectangle( 0, 0, ofGetWidth(), 400-305 );
+//    ofDrawRectangle( 0, 400-305 + 610, ofGetWidth(), 400-305 );
+//    
+////    ofEnableAlphaBlending();
+//    
+//    ofPopStyle();
+//    
+//}
 
 //--------------------------------------------------------------
 void ofApp::drawBuildingsMesh(vector< ofMesh > _mesh, ofVec3f _position, ofVec3f _rotation){
@@ -144,7 +189,7 @@ void ofApp::drawBuildingsMesh(vector< ofMesh > _mesh, ofVec3f _position, ofVec3f
     ofPopStyle();
     
     ofPushStyle();
-    ofSetColor(255, 80);
+    ofSetColor(255, 160);
     
     for (int i=0; i<_mesh.size(); i++) {
         vector<ofVec3f> & _v = _mesh[i].getVertices();
@@ -169,6 +214,8 @@ void ofApp::drawBuildingsMesh(vector< ofMesh > _mesh, ofVec3f _position, ofVec3f
         
     }
     
+    ofPopStyle();
+
     ofPopMatrix();
 
 }
@@ -188,8 +235,9 @@ void ofApp::drawRoadPolyLineMoving(vector< ofPolyline > _ofPolyline, ofVec3f _po
     
     
     ofPushStyle();
-    ofSetColor(255, 220);
+    ofSetColor(255, 120);
 
+    ofSetLineWidth(1);
     for (int i=0; i<_ofPolyline.size(); i++) {
         _ofPolyline[i].draw();
     }
@@ -208,14 +256,119 @@ void ofApp::drawRoadPolyLineMoving(vector< ofPolyline > _ofPolyline, ofVec3f _po
 
 
 
+////--------------------------------------------------------------
+//void ofApp::drawEdge(){
+//    
+//    
+//    ofPushStyle();
+//    ofSetColor(0, 0, 0);
+//    
+//    ofPoint _topLeft = quadManager.getQuad(0)->getOutputPoint(0);
+//    ofPoint _topRight = quadManager.getQuad(0)->getOutputPoint(1);
+//    ofPoint _bottomRight = quadManager.getQuad(0)->getOutputPoint(2);
+//    ofPoint _bottomLeft = quadManager.getQuad(0)->getOutputPoint(3);
+//    
+//    ofPolyline _left;
+//    _left.addVertex( ofVec2f(0, 0) );
+//    _left.addVertex( _topLeft );
+//    _left.addVertex( _bottomLeft );
+//    _left.addVertex( ofVec2f(0, ofGetHeight()) );
+//    
+//    ofBeginShape();
+//    vector<ofVec3f>& _verticesLeft = _left.getVertices();
+//    for(int j = 0; j < _verticesLeft.size(); j++) {
+//        ofVertex(_verticesLeft[j]);
+//    }
+//    ofEndShape();
+//    
+//    
+//    ofPolyline _up;
+//    _up.addVertex( ofVec2f(0, 0) );
+//    _up.addVertex( ofVec2f(ofGetWidth(), 0) );
+//    _up.addVertex( _topRight );
+//    _up.addVertex( _topLeft );
+//    
+//    ofBeginShape();
+//    vector<ofVec3f>& _verticesUp = _up.getVertices();
+//    for(int j = 0; j < _verticesUp.size(); j++) {
+//        ofVertex(_verticesUp[j]);
+//    }
+//    ofEndShape();
+//    
+//    ofPolyline _right;
+//    _right.addVertex( _topRight );
+//    _right.addVertex( ofVec2f(ofGetWidth(), 0) );
+//    _right.addVertex( ofVec2f(ofGetWidth(), ofGetHeight()) );
+//    _right.addVertex( _bottomRight );
+//    
+//    ofBeginShape();
+//    vector<ofVec3f>& _verticesRight = _right.getVertices();
+//    for(int j = 0; j < _verticesRight.size(); j++) {
+//        ofVertex(_verticesRight[j]);
+//    }
+//    ofEndShape();
+//    
+//    ofPolyline _bottom;
+//    _bottom.addVertex( _bottomLeft );
+//    _bottom.addVertex( _bottomRight );
+//    _bottom.addVertex( ofVec2f(ofGetWidth(), ofGetHeight()) );
+//    _bottom.addVertex( ofVec2f(0, ofGetHeight()) );
+//    
+//    ofBeginShape();
+//    vector<ofVec3f>& _verticesBottom = _bottom.getVertices();
+//    for(int j = 0; j < _verticesBottom.size(); j++) {
+//        ofVertex(_verticesBottom[j]);
+//    }
+//    ofEndShape();
+//    
+//    
+//    ofPopStyle();
+//    
+//    
+//    ofPushStyle();
+//
+//    ofSetColor(0, 255, 0);
+//    
+//    ofDrawCircle(_topLeft, 5);
+//    ofDrawCircle(_topRight, 5);
+//    ofDrawCircle(_bottomRight, 5);
+//    ofDrawCircle(_bottomLeft, 5);
+//    
+//    ofPopStyle();
+//    
+//}
+
+
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+ 
+//    if (key == '1') {
+//        topleft = ofPoint( mouseX, mouseY );
+//    }
+//    if (key == '2') {
+//        topright = ofPoint( mouseX, mouseY );
+//    }
+//    if (key == '3') {
+//        buttomright = ofPoint( mouseX, mouseY );
+//    }
+//    if (key == '4') {
+//        buttomleft = ofPoint( mouseX, mouseY );
+//    }
+
+//    if (key == 'g') {
+//        bGUI = !bGUI;
+//    }
     
 }
+
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
     
+//    if ((key =='1') || (key =='2') || (key =='3') || (key =='4')) {
+//        quad->setOutputPoints(topleft, topright, buttomright, buttomleft);
+//    }
+
 }
 
 //--------------------------------------------------------------
