@@ -66,24 +66,30 @@ void ofApp::draw(){
     
     camera.begin();
     
-//    mainLight.enable();
+//    mainLight.enable();s
     
-    ofVec3f _offSetPosition = ofVec3f(540, 540, 540);
+    ofVec3f _offSetPos = ofVec3f(540, 540, 540);
     
-    drawBuildingsMesh(buildingsMesh_top, ofVec3f(0, 0, _offSetPosition.z), ofVec3f(0, 0, 0));
-    drawBuildingsMesh(buildingsMesh_left, ofVec3f(-_offSetPosition.x, 0, 0), ofVec3f(0, -90, 0));
-    drawBuildingsMesh(buildingsMesh_right, ofVec3f(_offSetPosition.x, 0, 0), ofVec3f(0, 90, 0));
-    drawBuildingsMesh(buildingsMesh_front, ofVec3f(0, _offSetPosition.y, 0), ofVec3f(-90, 0, 0));
-    drawBuildingsMesh(buildingsMesh_back, ofVec3f(0, -_offSetPosition.y, 0), ofVec3f(90, 0, 0));
-    drawBuildingsMesh(buildingsMesh_bottom, ofVec3f(0, 0, -_offSetPosition.z), ofVec3f(180, 0, 0));
+    drawBuildingsMesh(buildingsMesh_top, ofVec3f(0, 0, _offSetPos.z), ofVec3f(0, 0, 0));
+    drawBuildingsMesh(buildingsMesh_left, ofVec3f(-_offSetPos.x, 0, 0), ofVec3f(0, -90, 0));
+    drawBuildingsMesh(buildingsMesh_right, ofVec3f(_offSetPos.x, 0, 0), ofVec3f(0, 90, 0));
+    drawBuildingsMesh(buildingsMesh_front, ofVec3f(0, _offSetPos.y, 0), ofVec3f(-90, 0, 0));
+    drawBuildingsMesh(buildingsMesh_back, ofVec3f(0, -_offSetPos.y, 0), ofVec3f(90, 0, 0));
+    drawBuildingsMesh(buildingsMesh_bottom, ofVec3f(0, 0, -_offSetPos.z), ofVec3f(180, 0, 0));
 
-    drawRoadPolyLineMoving(roadsPolyline_top, ofVec3f(0, 0, _offSetPosition.z), ofVec3f(0, 0, 0));
-    drawRoadPolyLineMoving(roadsPolyline_left, ofVec3f(-_offSetPosition.x, 0, 0), ofVec3f(0, -90, 0));
-    drawRoadPolyLineMoving(roadsPolyline_right, ofVec3f(_offSetPosition.x, 0, 0), ofVec3f(0, 90, 0));
-    drawRoadPolyLineMoving(roadsPolyline_front, ofVec3f(0, _offSetPosition.y, 0), ofVec3f(-90, 0, 0));
-    drawRoadPolyLineMoving(roadsPolyline_back, ofVec3f(0, -_offSetPosition.y, 0), ofVec3f(90, 0, 0));
-    drawRoadPolyLineMoving(roadsPolyline_bottom, ofVec3f(0, 0, -_offSetPosition.z), ofVec3f(180, 0, 0));
+    drawRoadPolyLineMoving(roadsPolyline_top, ofVec3f(0, 0, _offSetPos.z), ofVec3f(0, 0, 0));
+    drawRoadPolyLineMoving(roadsPolyline_left, ofVec3f(-_offSetPos.x, 0, 0), ofVec3f(0, -90, 0));
+    drawRoadPolyLineMoving(roadsPolyline_right, ofVec3f(_offSetPos.x, 0, 0), ofVec3f(0, 90, 0));
+    drawRoadPolyLineMoving(roadsPolyline_front, ofVec3f(0, _offSetPos.y, 0), ofVec3f(-90, 0, 0));
+    drawRoadPolyLineMoving(roadsPolyline_back, ofVec3f(0, -_offSetPos.y, 0), ofVec3f(90, 0, 0));
+    drawRoadPolyLineMoving(roadsPolyline_bottom, ofVec3f(0, 0, -_offSetPos.z), ofVec3f(180, 0, 0));
     
+    mainLight.enable();
+    
+    rootNode->draw();
+    
+    mainLight.disable();
+
     
 //    mainLight.disable();
     
