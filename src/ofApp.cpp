@@ -66,7 +66,7 @@ void ofApp::draw(){
     
     camera.begin();
     
-//    mainLight.enable();s
+//    mainLight.enable();
     
     ofVec3f _offSetPos = ofVec3f(540, 540, 540);
     
@@ -84,11 +84,8 @@ void ofApp::draw(){
     drawRoadPolyLineMoving(roadsPolyline_back, ofVec3f(0, -_offSetPos.y, 0), ofVec3f(90, 0, 0));
     drawRoadPolyLineMoving(roadsPolyline_bottom, ofVec3f(0, 0, -_offSetPos.z), ofVec3f(180, 0, 0));
     
-    mainLight.enable();
-    
-    rootNode->draw();
-    
-    mainLight.disable();
+
+    //    mainLight.disable();
 
     
 //    mainLight.disable();
