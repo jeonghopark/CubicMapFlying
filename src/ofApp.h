@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "GuiApp.h"
+#include "BaseArch.h"
 
 #include "FeatureNode.h"
 #include "JsonLoader.h"
@@ -30,6 +31,7 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
+    BaseArch baseArch;
     
     shared_ptr<GuiApp> gui;
 
@@ -86,28 +88,8 @@ public:
     void drawBuildingsMesh(vector< ofMesh > _mesh, ofVec3f _position, ofVec3f _rotation);
     void drawRoadPolyLineMoving(vector< ofPolyline > _polyline, ofVec3f _position, ofVec3f _rotation);
   
-//    void drawEdgeShape();
-//    ofImage originArchBase;
-//    ofImage fassadeImg;
 
-//    ofxQuad* quad;
-//    ofxQuadManager quadManager;
-//    ofPoint topleft, topright, buttomleft, buttomright;
-    
-//    void drawEdge();
+    float mainOffSetXPos, mainOffSetYPos;
 
-
-//    ofxPanel gui;
-//    ofxColorSlider colorBackground;
-//    ofxColorSlider colorBuilding;
-//    
-//    ofxColorSlider colorStreet;
-//    ofxFloatSlider streetWidth;
-//    ofxFloatSlider movingObjectSize;
-//    
-//    ofxColorSlider colorFassade;
-//    
-//    bool bGUI;
-    
 
 };
