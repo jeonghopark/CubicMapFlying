@@ -9,9 +9,6 @@
 
 #include "ofxJSON.h"
 
-#include "ofxQuadManager.h"
-#include "ofxQuadSourceImage.h"
-
 #include "ofxImmediateModeInput.h"
 #include "ofxFirstPersonCamera.h"
 

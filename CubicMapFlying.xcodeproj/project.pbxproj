@@ -13,11 +13,6 @@
 		8F8887A353D20A912E989043 /* JsonLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0056DDC2FB9237571507BB0E /* JsonLoader.cpp */; };
 		90EFE1B897A797B81ED960B9 /* FeatureLeafNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F386EF4AEFB25D1DFAE032B6 /* FeatureLeafNode.cpp */; };
 		9455F3F777137963C1194F60 /* ofxJSONElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 081473F8EA3EB8A9C41C0FBE /* ofxJSONElement.cpp */; };
-		A8120F341BBD83BD003808C0 /* ofxQuad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8120F231BBD83BD003808C0 /* ofxQuad.cpp */; settings = {ASSET_TAGS = (); }; };
-		A8120F351BBD83BD003808C0 /* ofxQuadManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8120F251BBD83BD003808C0 /* ofxQuadManager.cpp */; settings = {ASSET_TAGS = (); }; };
-		A8120F361BBD83BD003808C0 /* ofxQuadSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8120F271BBD83BD003808C0 /* ofxQuadSource.cpp */; settings = {ASSET_TAGS = (); }; };
-		A8120F371BBD83BD003808C0 /* ofxQuadSourceImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8120F291BBD83BD003808C0 /* ofxQuadSourceImage.cpp */; settings = {ASSET_TAGS = (); }; };
-		A8120F381BBD83BD003808C0 /* ofxQuadSourceVideo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8120F2B1BBD83BD003808C0 /* ofxQuadSourceVideo.cpp */; settings = {ASSET_TAGS = (); }; };
 		A8120F531BBD86CB003808C0 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8120F421BBD86CB003808C0 /* ofxBaseGui.cpp */; settings = {ASSET_TAGS = (); }; };
 		A8120F541BBD86CB003808C0 /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8120F441BBD86CB003808C0 /* ofxButton.cpp */; settings = {ASSET_TAGS = (); }; };
 		A8120F551BBD86CB003808C0 /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8120F471BBD86CB003808C0 /* ofxGuiGroup.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -82,17 +77,6 @@
 		816AD209BB96C6B23CCD47EF /* ofxJSONElement.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxJSONElement.h; path = ../../../../openFrameworks/addons/ofxJSON/src/ofxJSONElement.h; sourceTree = SOURCE_ROOT; };
 		8C0C738EAA20D82EA41BE976 /* json.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = json.h; path = ../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json/json.h; sourceTree = SOURCE_ROOT; };
 		A4ED34B32682515AE752ECDB /* FeatureNode.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = FeatureNode.h; path = src/FeatureNode.h; sourceTree = SOURCE_ROOT; };
-		A8120F221BBD83BD003808C0 /* homography.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = homography.h; sourceTree = "<group>"; };
-		A8120F231BBD83BD003808C0 /* ofxQuad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxQuad.cpp; sourceTree = "<group>"; };
-		A8120F241BBD83BD003808C0 /* ofxQuad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxQuad.h; sourceTree = "<group>"; };
-		A8120F251BBD83BD003808C0 /* ofxQuadManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxQuadManager.cpp; sourceTree = "<group>"; };
-		A8120F261BBD83BD003808C0 /* ofxQuadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxQuadManager.h; sourceTree = "<group>"; };
-		A8120F271BBD83BD003808C0 /* ofxQuadSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxQuadSource.cpp; sourceTree = "<group>"; };
-		A8120F281BBD83BD003808C0 /* ofxQuadSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxQuadSource.h; sourceTree = "<group>"; };
-		A8120F291BBD83BD003808C0 /* ofxQuadSourceImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxQuadSourceImage.cpp; sourceTree = "<group>"; };
-		A8120F2A1BBD83BD003808C0 /* ofxQuadSourceImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxQuadSourceImage.h; sourceTree = "<group>"; };
-		A8120F2B1BBD83BD003808C0 /* ofxQuadSourceVideo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxQuadSourceVideo.cpp; sourceTree = "<group>"; };
-		A8120F2C1BBD83BD003808C0 /* ofxQuadSourceVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxQuadSourceVideo.h; sourceTree = "<group>"; };
 		A8120F421BBD86CB003808C0 /* ofxBaseGui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxBaseGui.cpp; sourceTree = "<group>"; };
 		A8120F431BBD86CB003808C0 /* ofxBaseGui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxBaseGui.h; sourceTree = "<group>"; };
 		A8120F441BBD86CB003808C0 /* ofxButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxButton.cpp; sourceTree = "<group>"; };
@@ -210,33 +194,6 @@
 				CCDC6F9CCF925CC402160B85 /* src */,
 			);
 			name = jsoncpp;
-			sourceTree = "<group>";
-		};
-		A8120EF31BBD83BD003808C0 /* ofxVideoMapping */ = {
-			isa = PBXGroup;
-			children = (
-				A8120F211BBD83BD003808C0 /* src */,
-			);
-			name = ofxVideoMapping;
-			path = ../../../../openFrameworks/addons/ofxVideoMapping;
-			sourceTree = "<group>";
-		};
-		A8120F211BBD83BD003808C0 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				A8120F221BBD83BD003808C0 /* homography.h */,
-				A8120F231BBD83BD003808C0 /* ofxQuad.cpp */,
-				A8120F241BBD83BD003808C0 /* ofxQuad.h */,
-				A8120F251BBD83BD003808C0 /* ofxQuadManager.cpp */,
-				A8120F261BBD83BD003808C0 /* ofxQuadManager.h */,
-				A8120F271BBD83BD003808C0 /* ofxQuadSource.cpp */,
-				A8120F281BBD83BD003808C0 /* ofxQuadSource.h */,
-				A8120F291BBD83BD003808C0 /* ofxQuadSourceImage.cpp */,
-				A8120F2A1BBD83BD003808C0 /* ofxQuadSourceImage.h */,
-				A8120F2B1BBD83BD003808C0 /* ofxQuadSourceVideo.cpp */,
-				A8120F2C1BBD83BD003808C0 /* ofxQuadSourceVideo.h */,
-			);
-			path = src;
 			sourceTree = "<group>";
 		};
 		A8120F401BBD86CB003808C0 /* ofxGui */ = {
@@ -485,7 +442,6 @@
 				A8D262BD1BC84D57006750C1 /* ofxImmediateModeInput */,
 				A85DD5F61BC6706D008D89EB /* ofxCsv */,
 				A8120F401BBD86CB003808C0 /* ofxGui */,
-				A8120EF31BBD83BD003808C0 /* ofxVideoMapping */,
 				2865DAEF86B1907A704CA70B /* ofxJSON */,
 			);
 			name = addons;
@@ -655,27 +611,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8120F591BBD86CB003808C0 /* ofxSliderGroup.cpp in Sources */,
-				A8120F361BBD83BD003808C0 /* ofxQuadSource.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				A8C121791BD1033300D66B20 /* stb_truetype.c in Sources */,
 				A85DD5EF1BC66FCC008D89EB /* GuiApp.cpp in Sources */,
-				A8120F351BBD83BD003808C0 /* ofxQuadManager.cpp in Sources */,
 				A8C1217B1BD1033300D66B20 /* ofxFontStash.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				A8C1217E1BD1033300D66B20 /* ofUTF8.cpp in Sources */,
 				A8120F541BBD86CB003808C0 /* ofxButton.cpp in Sources */,
 				5C9CA4BFC796A8E17D387BAE /* FeatureCollectionNode.cpp in Sources */,
-				A8120F341BBD83BD003808C0 /* ofxQuad.cpp in Sources */,
 				A8120F5A1BBD86CB003808C0 /* ofxToggle.cpp in Sources */,
 				A8D262BE1BC84D57006750C1 /* ofxFirstPersonCamera.cpp in Sources */,
 				A8C1217D1BD1033300D66B20 /* ofUnicode.cpp in Sources */,
-				A8120F381BBD83BD003808C0 /* ofxQuadSourceVideo.cpp in Sources */,
 				A85DD5F21BC66FE1008D89EB /* BaseArch.cpp in Sources */,
 				A85DD5F71BC6706D008D89EB /* ofxCsv.cpp in Sources */,
 				A8C121781BD1033300D66B20 /* fontstash.c in Sources */,
 				A8120F571BBD86CB003808C0 /* ofxPanel.cpp in Sources */,
 				90EFE1B897A797B81ED960B9 /* FeatureLeafNode.cpp in Sources */,
-				A8120F371BBD83BD003808C0 /* ofxQuadSourceImage.cpp in Sources */,
 				63E4B28AF5F75CA2F87A0758 /* FeatureNode.cpp in Sources */,
 				8F8887A353D20A912E989043 /* JsonLoader.cpp in Sources */,
 				A8C1217C1BD1033300D66B20 /* ofTextConverter.cpp in Sources */,
