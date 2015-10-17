@@ -14,8 +14,7 @@ void ofApp::setup(){
     ofSetFrameRate(60);
     ofEnableDepthTest();
     ofEnableAlphaBlending();
-    ofEnableLighting();
-
+    
     cam.setNearClip(0.0001f);
     cam.setFarClip(10000.0f);
     cam.toggleControl();
@@ -46,7 +45,7 @@ void ofApp::setup(){
     
     
     camera.disableMouseInput();
-
+    
     JsonLoader jsonLoader = JsonLoader("vectorTile_16_33975_22294.json");
     rootNode = jsonLoader.loadNodeGraph();
     rootNode->setPosition(0, 0, 0);
@@ -54,14 +53,7 @@ void ofApp::setup(){
     camera.move(0, 0, 300);
     camera.setTarget(rootNode->getGlobalPosition());
     
-    mainLight.setPointLight();
-    mainLight.setGlobalPosition(-100, 0, 500);
-    mainLight.setDiffuseColor(ofColor(35, 35, 35));
-    mainLight.setSpecularColor(ofColor(255));
     
-    material.setDiffuseColor(ofColor(50, 50, 50));
-    material.setSpecularColor(ofColor(255, 255, 255));
-
 }
 
 //--------------------------------------------------------------
@@ -94,20 +86,9 @@ void ofApp::update(){
 void ofApp::draw(){
     
     
-    ofEnableLighting();
-
-
     camera.begin();
-    mainLight.enable();
-    
-
-    material.begin();
-    
     
     ofVec3f _offSetPos = ofVec3f(0, 0, 0);
-    
-    
-//    rootNode->draw();
     
     drawBuildingsMesh(buildingsMesh_top, ofVec3f(0, 0, _offSetPos.z), ofVec3f(0, 0, 0));
     //    drawBuildingsMesh(buildingsMesh_left, ofVec3f(-_offSetPos.x, 0, 0), ofVec3f(0, -90, 0));
@@ -123,15 +104,7 @@ void ofApp::draw(){
     //    drawRoadPolyLineMoving(roadsPolyline_back, ofVec3f(0, -_offSetPos.y, 0), ofVec3f(90, 0, 0));
     //    drawRoadPolyLineMoving(roadsPolyline_bottom, ofVec3f(0, 0, -_offSetPos.z), ofVec3f(180, 0, 0));
     
-    material.end();
-    
-
-    mainLight.disable();
     camera.end();
-
-    
-    
-    ofDisableLighting();
     
     //    ofPushMatrix();
     //
@@ -154,34 +127,26 @@ void ofApp::draw(){
 void ofApp::drawBuildingsMesh(vector< ofMesh > _mesh, ofVec3f _position, ofVec3f _rotation){
     
     ofPushMatrix();
-    
     ofTranslate( _position );
-    
     ofRotateX(_rotation.x);
     ofRotateY(_rotation.y);
     ofRotateZ(_rotation.z);
     
     
-    ofPushStyle();
-    ofSetColor(255);
-    
-        for (int i=0; i<_mesh.size(); i++) {
-            _mesh[i].draw();
-        }
-    
-    ofPopStyle();
-    
-    
-    
+//    ofPushStyle();
+//    ofSetColor(255);
+//    for (int i=0; i<_mesh.size(); i++) {
+//        _mesh[i].draw();
+//    }
+//    ofPopStyle();
+
     
     ofPushStyle();
-    
     
     ofSetColor(255, 255);
     
     for (int i=0; i<_mesh.size(); i++) {
-        
-        
+
         //        ofPushStyle();
         //        ofSetColor(0, 255);
         //        vector<ofVec3f> & _v = _mesh[i].getVertices();
@@ -190,9 +155,16 @@ void ofApp::drawBuildingsMesh(vector< ofMesh > _mesh, ofVec3f _position, ofVec3f
         //        }
         //        ofPopStyle();
         
-        
+        ofBeginShape();
+        vector<ofVec3f>& _verticesUp = _mesh[i].getVertices();
+        for(int j = 0; j < _verticesUp.size(); j++) {
+            ofVec3f _v = _verticesUp[j] + ofVec3f(0, 0, 10);
+            ofVertex(_v);
+        }
+        ofEndShape();
+
         ofPushStyle();
-        ofSetColor(255, 255);
+        ofSetColor(180, 255);
         vector<ofVec3f>& _verticesSide = _mesh[i].getVertices();
         for(int j=_verticesSide.size()-2; j>=0; j--) {
             ofBeginShape();
@@ -206,8 +178,6 @@ void ofApp::drawBuildingsMesh(vector< ofMesh > _mesh, ofVec3f _position, ofVec3f
         }
         ofPopStyle();
         
-        
-        
         ofBeginShape();
         vector<ofVec3f>& _vertices = _mesh[i].getVertices();
         for(int j=0; j<_vertices.size()-1; j++) {
@@ -215,13 +185,6 @@ void ofApp::drawBuildingsMesh(vector< ofMesh > _mesh, ofVec3f _position, ofVec3f
         }
         ofEndShape();
         
-        ofBeginShape();
-        vector<ofVec3f>& _verticesUp = _mesh[i].getVertices();
-        for(int j = 0; j < _verticesUp.size(); j++) {
-            ofVec3f _v = _verticesUp[j] + ofVec3f(0, 0, 10);
-            ofVertex(_v);
-        }
-        ofEndShape();
         
     }
     
@@ -238,12 +201,9 @@ void ofApp::drawRoadPolyLineMoving(vector< ofPolyline > _ofPolyline, ofVec3f _po
     ofPushMatrix();
     
     ofTranslate( _position );
-    
     ofRotateX(_rotation.x);
     ofRotateY(_rotation.y);
     ofRotateZ(_rotation.z);
-    
-    
     
     ofPushStyle();
     ofSetColor(255, 120);
@@ -257,10 +217,8 @@ void ofApp::drawRoadPolyLineMoving(vector< ofPolyline > _ofPolyline, ofVec3f _po
         ofDrawCircle(_ofPolyline[i].getPointAtPercent( roadMoving_top ) , 2);
     }
     
-    
     ofPopStyle();
-    
-    
+
     ofPopMatrix();
     
 }

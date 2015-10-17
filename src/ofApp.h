@@ -41,7 +41,6 @@ public:
 
     
     ofEasyCam camera;
-    ofLight mainLight;
 
     vector< ofMesh > buildingsMesh_top;
     vector< ofMesh > roads_top;
@@ -103,6 +102,4 @@ public:
     
     FeatureNode* rootNode;
     
-    ofMaterial material;
-
 };
