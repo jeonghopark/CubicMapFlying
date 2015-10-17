@@ -12,8 +12,8 @@ FeatureLeafNode::FeatureLeafNode(ofMesh newGeometry) {
     
     geometry = newGeometry;
     material = ofMaterial();
-    material.setDiffuseColor(ofColor(50, 50, 50));
-    material.setSpecularColor(ofColor(255, 255, 255));
+//    material.setDiffuseColor(ofColor(50, 50, 50));
+//    material.setSpecularColor(ofColor(255, 255, 255));
     idString = "";
     
     setPosition(geometry.getCentroid());
@@ -31,9 +31,9 @@ FeatureLeafNode::FeatureLeafNode(ofMatrix4x4 newTransform) {
 
 void FeatureLeafNode::customDraw() {
     
-    material.begin();
-    geometry.draw();
-    material.end();
+//    material.begin();
+//    geometry.draw();
+//    material.end();
 
 }
 

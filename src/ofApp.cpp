@@ -13,13 +13,18 @@ void ofApp::setup(){
     ofBackground(0, 0, 0);
     ofSetFrameRate(60);
     ofEnableDepthTest();
-//    ofEnableAlphaBlending();
+    ofEnableAlphaBlending();
+    ofEnableLighting();
+
+    cam.setNearClip(0.0001f);
+    cam.setFarClip(10000.0f);
+    cam.toggleControl();
     
     mainOffSetXPos = (ofGetWidth() - (baseArch.fassadeCorner[0].x + baseArch.fassadeCorner[1].x)) * 0.5;
     mainOffSetYPos = (ofGetHeight() - (baseArch.fassadeCorner[0].y + baseArch.fassadeCorner[3].y)) * 0.5;
     baseArch.mainOffSetXPos = mainOffSetXPos;
     baseArch.mainOffSetYPos = mainOffSetYPos;
-
+    
     
     buildingsMesh_top = buildingsMesh("vectorTile_16_33975_22294.json");
     roadsPolyline_top = roadsPolyline("vectorTile_16_33975_22294.json");
@@ -40,23 +45,44 @@ void ofApp::setup(){
     roadsPolyline_bottom = roadsPolyline("vectorTile_16_33975_22296.json");
     
     
+    camera.disableMouseInput();
+
+    JsonLoader jsonLoader = JsonLoader("vectorTile_16_33975_22294.json");
+    rootNode = jsonLoader.loadNodeGraph();
+    rootNode->setPosition(0, 0, 0);
+    camera.setPosition(rootNode->getGlobalPosition());
+    camera.move(0, 0, 300);
+    camera.setTarget(rootNode->getGlobalPosition());
     
-    camera = ofEasyCam();
-    //    camera.setPosition(_rootNode_33975_22294->getGlobalPosition());
-    //    camera.move(0, 0, 300);
-    //    camera.setTarget(_rootNode_33975_22294->getGlobalPosition());
-    
-    mainLight = ofLight();
     mainLight.setPointLight();
-    mainLight.setGlobalPosition(0, 0, 0);
-    mainLight.setDiffuseColor(ofColor(255, 255, 255));
-    mainLight.setSpecularColor(ofColor(170, 170, 170));
+    mainLight.setGlobalPosition(-100, 0, 500);
+    mainLight.setDiffuseColor(ofColor(35, 35, 35));
+    mainLight.setSpecularColor(ofColor(255));
     
-    
+    material.setDiffuseColor(ofColor(50, 50, 50));
+    material.setSpecularColor(ofColor(255, 255, 255));
+
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    
+    auto pushed = in.keyPushed;
+    auto holded = in.keyHolded;
+    auto pulled = in.keyPulled;
+    
+    if( pushed[GLFW_KEY_LEFT_SHIFT] ) cam.movespeed = 7.0f;
+    if( pulled[GLFW_KEY_LEFT_SHIFT] ) cam.movespeed = 1.0f;
+    
+    if( pushed[GLFW_MOUSE_BUTTON_LEFT] ) paint.push_back( ofPolyline() );
+    if( holded[GLFW_MOUSE_BUTTON_LEFT] ) paint.back().addVertex( cam.getPosition() + (cam.getLookAtDir() * 50.0f) );
+    
+    if( pushed[GLFW_MOUSE_BUTTON_RIGHT] ) cam.toggleControl();
+    
+    
+    camera.lookAt(cam.getLookAtDir());
+    camera.setGlobalPosition(cam.getGlobalPosition() + ofVec3f(0, 0, 300));
+    camera.setGlobalOrientation(cam.getGlobalOrientation());
     
     roadMovingFactor_top = roadMovingFactor_top + 4;
     roadMoving_top = sin( ofDegToRad(roadMovingFactor_top) ) * 0.5 + 0.5;
@@ -68,49 +94,56 @@ void ofApp::update(){
 void ofApp::draw(){
     
     
-//    ofEnableLighting();
-    
+    ofEnableLighting();
+
+
     camera.begin();
+    mainLight.enable();
     
-//    mainLight.enable();
+
+    material.begin();
     
-    ofVec3f _offSetPos = ofVec3f(540, 540, 540);
+    
+    ofVec3f _offSetPos = ofVec3f(0, 0, 0);
+    
+    
+//    rootNode->draw();
     
     drawBuildingsMesh(buildingsMesh_top, ofVec3f(0, 0, _offSetPos.z), ofVec3f(0, 0, 0));
-    drawBuildingsMesh(buildingsMesh_left, ofVec3f(-_offSetPos.x, 0, 0), ofVec3f(0, -90, 0));
-    drawBuildingsMesh(buildingsMesh_right, ofVec3f(_offSetPos.x, 0, 0), ofVec3f(0, 90, 0));
-    drawBuildingsMesh(buildingsMesh_front, ofVec3f(0, _offSetPos.y, 0), ofVec3f(-90, 0, 0));
-    drawBuildingsMesh(buildingsMesh_back, ofVec3f(0, -_offSetPos.y, 0), ofVec3f(90, 0, 0));
-    drawBuildingsMesh(buildingsMesh_bottom, ofVec3f(0, 0, -_offSetPos.z), ofVec3f(180, 0, 0));
-
+    //    drawBuildingsMesh(buildingsMesh_left, ofVec3f(-_offSetPos.x, 0, 0), ofVec3f(0, -90, 0));
+    //    drawBuildingsMesh(buildingsMesh_right, ofVec3f(_offSetPos.x, 0, 0), ofVec3f(0, 90, 0));
+    //    drawBuildingsMesh(buildingsMesh_front, ofVec3f(0, _offSetPos.y, 0), ofVec3f(-90, 0, 0));
+    //    drawBuildingsMesh(buildingsMesh_back, ofVec3f(0, -_offSetPos.y, 0), ofVec3f(90, 0, 0));
+    //    drawBuildingsMesh(buildingsMesh_bottom, ofVec3f(0, 0, -_offSetPos.z), ofVec3f(180, 0, 0));
+    
     drawRoadPolyLineMoving(roadsPolyline_top, ofVec3f(0, 0, _offSetPos.z), ofVec3f(0, 0, 0));
-    drawRoadPolyLineMoving(roadsPolyline_left, ofVec3f(-_offSetPos.x, 0, 0), ofVec3f(0, -90, 0));
-    drawRoadPolyLineMoving(roadsPolyline_right, ofVec3f(_offSetPos.x, 0, 0), ofVec3f(0, 90, 0));
-    drawRoadPolyLineMoving(roadsPolyline_front, ofVec3f(0, _offSetPos.y, 0), ofVec3f(-90, 0, 0));
-    drawRoadPolyLineMoving(roadsPolyline_back, ofVec3f(0, -_offSetPos.y, 0), ofVec3f(90, 0, 0));
-    drawRoadPolyLineMoving(roadsPolyline_bottom, ofVec3f(0, 0, -_offSetPos.z), ofVec3f(180, 0, 0));
+    //    drawRoadPolyLineMoving(roadsPolyline_left, ofVec3f(-_offSetPos.x, 0, 0), ofVec3f(0, -90, 0));
+    //    drawRoadPolyLineMoving(roadsPolyline_right, ofVec3f(_offSetPos.x, 0, 0), ofVec3f(0, 90, 0));
+    //    drawRoadPolyLineMoving(roadsPolyline_front, ofVec3f(0, _offSetPos.y, 0), ofVec3f(-90, 0, 0));
+    //    drawRoadPolyLineMoving(roadsPolyline_back, ofVec3f(0, -_offSetPos.y, 0), ofVec3f(90, 0, 0));
+    //    drawRoadPolyLineMoving(roadsPolyline_bottom, ofVec3f(0, 0, -_offSetPos.z), ofVec3f(180, 0, 0));
+    
+    material.end();
     
 
-    //    mainLight.disable();
-
-    
-//    mainLight.disable();
-    
+    mainLight.disable();
     camera.end();
-    
-//    ofDisableLighting();
-    
-    ofPushMatrix();
-    
-    ofTranslate( mainOffSetXPos, mainOffSetYPos );
-    
-    baseArch.guideFrames();
-    baseArch.drawEdgeCover( ofColor(0) );
-    baseArch.guideLines();
-    baseArch.guidePoints();
-    
-    ofPopMatrix();
 
+    
+    
+    ofDisableLighting();
+    
+    //    ofPushMatrix();
+    //
+    //    ofTranslate( mainOffSetXPos, mainOffSetYPos );
+    //
+    //    baseArch.guideFrames();
+    //    baseArch.drawEdgeCover( ofColor(0) );
+    //    baseArch.guideLines();
+    //    baseArch.guidePoints();
+    //
+    //    ofPopMatrix();
+    
     
     
 }
@@ -128,35 +161,40 @@ void ofApp::drawBuildingsMesh(vector< ofMesh > _mesh, ofVec3f _position, ofVec3f
     ofRotateY(_rotation.y);
     ofRotateZ(_rotation.z);
     
-
-    ofPushStyle();
-    ofSetColor(255, 80);
     
-    //    for (int i=0; i<_mesh.size(); i++) {
-    //        _mesh[i].draw();
-    //    }
+    ofPushStyle();
+    ofSetColor(255);
+    
+        for (int i=0; i<_mesh.size(); i++) {
+            _mesh[i].draw();
+        }
     
     ofPopStyle();
     
+    
+    
+    
     ofPushStyle();
+    
+    
     ofSetColor(255, 255);
     
     for (int i=0; i<_mesh.size(); i++) {
         
-
-//        ofPushStyle();
-//        ofSetColor(0, 255);
-//        vector<ofVec3f> & _v = _mesh[i].getVertices();
-//        for (int j=0; j<_v.size(); j++) {
-//            ofDrawLine( _v[j] - ofVec3f(0, 0, 0), _v[j] + ofVec3f(0, 0, 10) );
-//        }
-//        ofPopStyle();
+        
+        //        ofPushStyle();
+        //        ofSetColor(0, 255);
+        //        vector<ofVec3f> & _v = _mesh[i].getVertices();
+        //        for (int j=0; j<_v.size(); j++) {
+        //            ofDrawLine( _v[j] - ofVec3f(0, 0, 0), _v[j] + ofVec3f(0, 0, 10) );
+        //        }
+        //        ofPopStyle();
         
         
         ofPushStyle();
-        ofSetColor(180, 255);
+        ofSetColor(255, 255);
         vector<ofVec3f>& _verticesSide = _mesh[i].getVertices();
-        for(int j = 0; j < _verticesSide.size()-1; j++) {
+        for(int j=_verticesSide.size()-2; j>=0; j--) {
             ofBeginShape();
             ofVertex(_verticesSide[j]);
             ofVertex(_verticesSide[j+1]);
@@ -172,7 +210,7 @@ void ofApp::drawBuildingsMesh(vector< ofMesh > _mesh, ofVec3f _position, ofVec3f
         
         ofBeginShape();
         vector<ofVec3f>& _vertices = _mesh[i].getVertices();
-        for(int j = 0; j < _vertices.size(); j++) {
+        for(int j=0; j<_vertices.size()-1; j++) {
             ofVertex(_vertices[j]);
         }
         ofEndShape();
@@ -267,7 +305,7 @@ void ofApp::windowResized(int w, int h){
     mainOffSetYPos = (ofGetHeight() - (baseArch.fassadeCorner[0].y + baseArch.fassadeCorner[3].y)) * 0.5;
     baseArch.mainOffSetXPos = mainOffSetXPos;
     baseArch.mainOffSetYPos = mainOffSetYPos;
-
+    
 }
 
 //--------------------------------------------------------------

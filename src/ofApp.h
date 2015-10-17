@@ -12,6 +12,10 @@
 #include "ofxQuadManager.h"
 #include "ofxQuadSourceImage.h"
 
+#include "ofxImmediateModeInput.h"
+#include "ofxFirstPersonCamera.h"
+
+
 #include "ofxGui.h"
 
 class ofApp : public ofBaseApp{
@@ -91,5 +95,14 @@ public:
 
     float mainOffSetXPos, mainOffSetYPos;
 
+
+    ofxImmediateModeInput in;
+    ofxFirstPersonCamera cam;
+    vector<ofPolyline> paint;
+
+    
+    FeatureNode* rootNode;
+    
+    ofMaterial material;
 
 };
