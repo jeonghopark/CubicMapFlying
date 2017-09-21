@@ -1,8 +1,6 @@
 #pragma once
 
 #include "ofMain.h"
-#include "GuiApp.h"
-#include "BaseArch.h"
 
 #include "FeatureNode.h"
 #include "JsonLoader.h"
@@ -12,8 +10,6 @@
 #include "ofxImmediateModeInput.h"
 #include "ofxFirstPersonCamera.h"
 
-
-#include "ofxGui.h"
 
 class ofApp : public ofBaseApp{
 
@@ -31,11 +27,6 @@ public:
     void windowResized(int w, int h);
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
-    
-    BaseArch baseArch;
-    
-    shared_ptr<GuiApp> gui;
-
     
     ofEasyCam camera;
 

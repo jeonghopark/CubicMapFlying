@@ -117,7 +117,7 @@ FeatureNode* JsonLoader::parseFeatureNode(ofxJSONElement featureJson) {
         
     } else if (type.compare("MultiPoint") == 0) {
         
-        vector<ofVec3f> verts = parsePointArrayInProjectedCoords(coords);
+        vector<glm::vec3> verts = parsePointArrayInProjectedCoords(coords);
         
         anchor = getCentroidFromPoints(verts);
         
@@ -173,18 +173,18 @@ FeatureNode* JsonLoader::parseFeatureNode(ofxJSONElement featureJson) {
     
 }
 
-ofVec3f JsonLoader::parsePointInProjectedCoords(ofxJSONElement pointJson) {
+glm::vec3 JsonLoader::parsePointInProjectedCoords(ofxJSONElement pointJson) {
     
     double x = lon2x(pointJson[0].asFloat());
     double y = lat2y(pointJson[1].asFloat());
     
-    return ofVec3f(x, y, 0);
+    return glm::vec3(x, y, 0);
     
 }
 
-vector<ofVec3f> JsonLoader::parsePointArrayInProjectedCoords(ofxJSONElement pointArrayJson) {
+vector<glm::vec3> JsonLoader::parsePointArrayInProjectedCoords(ofxJSONElement pointArrayJson) {
     
-    vector<ofVec3f> pts;
+    vector<glm::vec3> pts;
     
     for (int i = 0; i < pointArrayJson.size(); i++) {
         pts.push_back(parsePointInProjectedCoords(pointArrayJson[i]));
@@ -196,7 +196,7 @@ vector<ofVec3f> JsonLoader::parsePointArrayInProjectedCoords(ofxJSONElement poin
 
 void JsonLoader::parseLineGeometry(ofxJSONElement lineJson, ofxJSONElement propsJson, ofMesh* meshToFill, ofVec3f* anchor) {
     
-    vector<ofVec3f> verts = parsePointArrayInProjectedCoords(lineJson);
+    vector<glm::vec3> verts = parsePointArrayInProjectedCoords(lineJson);
     
     *anchor = getCentroidFromPoints(verts);
     
@@ -229,7 +229,7 @@ void JsonLoader::parsePolygonGeometry(ofxJSONElement polygonJson, ofxJSONElement
     
     for (int i = 0; i < polygonJson.size(); i++) {
         
-        vector<ofVec3f> verts = parsePointArrayInProjectedCoords(polygonJson[i]);
+        vector<glm::vec3> verts = parsePointArrayInProjectedCoords(polygonJson[i]);
         
         if (i == 0) {
             *anchor = getCentroidFromPoints(verts);
@@ -250,13 +250,14 @@ void JsonLoader::parsePolygonGeometry(ofxJSONElement polygonJson, ofxJSONElement
     
     if (height != 0) {
         // Extrude outermost (first) polyLine down to minHeight
-        vector<ofVec3f> outlineVerts = polyLines[0].getVertices();
+        vector<glm::vec3> outlineVerts = polyLines[0].getVertices();
         
         for (int i = 0; i < outlineVerts.size() - 1; i++) {
             
             int nV = meshToFill->getNumVertices();
             
-            ofVec3f norm = (meshToFill->getNormals()[i]).crossed(outlineVerts[i+1] - outlineVerts[i]);
+//            ofVec3f norm = (meshToFill->getNormals()[i]).crossed(outlineVerts[i+1] - outlineVerts[i]);
+            glm::vec3 norm = glm::normalize(glm::cross(meshToFill->getNormals()[i], outlineVerts[i+1] - outlineVerts[i]));
             
             meshToFill->addVertex(outlineVerts[i]);
             meshToFill->addNormal(norm);
@@ -275,14 +276,14 @@ void JsonLoader::parsePolygonGeometry(ofxJSONElement polygonJson, ofxJSONElement
 
 }
 
-void JsonLoader::movePoints(vector<ofVec3f> *pts, ofVec3f offset) {
+void JsonLoader::movePoints(vector<glm::vec3> *pts, ofVec3f offset) {
     
     for (int i = 0; i < pts->size(); i++) {
         (*pts)[i] += offset;
     }
 }
 
-ofVec3f JsonLoader::getCentroidFromPoints(vector<ofVec3f> pts) {
+ofVec3f JsonLoader::getCentroidFromPoints(vector<glm::vec3> pts) {
     ofVec3f centroid;
     
     for (int i = 0; i < pts.size(); i++) {

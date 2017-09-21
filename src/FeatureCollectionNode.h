@@ -12,6 +12,8 @@
 #include <vector>
 #include "ofMain.h"
 #include "FeatureNode.h"
+#include "ofNode.h"
+
 
 #endif /* defined(__vectorTileExperiment__FeatureCollectionNode__) */
 

@@ -19,11 +19,6 @@ void ofApp::setup(){
     cam.setFarClip(10000.0f);
     cam.toggleControl();
     
-    mainOffSetXPos = (ofGetWidth() - (baseArch.fassadeCorner[0].x + baseArch.fassadeCorner[1].x)) * 0.5;
-    mainOffSetYPos = (ofGetHeight() - (baseArch.fassadeCorner[0].y + baseArch.fassadeCorner[3].y)) * 0.5;
-    baseArch.mainOffSetXPos = mainOffSetXPos;
-    baseArch.mainOffSetYPos = mainOffSetYPos;
-    
     
     buildingsMesh_top = buildingsMesh("vectorTile_16_33975_22294.json");
     roadsPolyline_top = roadsPolyline("vectorTile_16_33975_22294.json");
@@ -156,7 +151,7 @@ void ofApp::drawBuildingsMesh(vector< ofMesh > _mesh, ofVec3f _position, ofVec3f
         //        ofPopStyle();
         
         ofBeginShape();
-        vector<ofVec3f>& _verticesUp = _mesh[i].getVertices();
+        vector<glm::vec3>& _verticesUp = _mesh[i].getVertices();
         for(int j = 0; j < _verticesUp.size(); j++) {
             ofVec3f _v = _verticesUp[j] + ofVec3f(0, 0, 10);
             ofVertex(_v);
@@ -165,7 +160,7 @@ void ofApp::drawBuildingsMesh(vector< ofMesh > _mesh, ofVec3f _position, ofVec3f
 
         ofPushStyle();
         ofSetColor(180, 255);
-        vector<ofVec3f>& _verticesSide = _mesh[i].getVertices();
+        vector<glm::vec3>& _verticesSide = _mesh[i].getVertices();
         for(int j=_verticesSide.size()-2; j>=0; j--) {
             ofBeginShape();
             ofVertex(_verticesSide[j]);
@@ -179,7 +174,7 @@ void ofApp::drawBuildingsMesh(vector< ofMesh > _mesh, ofVec3f _position, ofVec3f
         ofPopStyle();
         
         ofBeginShape();
-        vector<ofVec3f>& _vertices = _mesh[i].getVertices();
+        vector<glm::vec3>& _vertices = _mesh[i].getVertices();
         for(int j=0; j<_vertices.size()-1; j++) {
             ofVertex(_vertices[j]);
         }
@@ -259,11 +254,6 @@ void ofApp::mouseReleased(int x, int y, int button){
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
     
-    mainOffSetXPos = (ofGetWidth() - (baseArch.fassadeCorner[0].x + baseArch.fassadeCorner[1].x)) * 0.5;
-    mainOffSetYPos = (ofGetHeight() - (baseArch.fassadeCorner[0].y + baseArch.fassadeCorner[3].y)) * 0.5;
-    baseArch.mainOffSetXPos = mainOffSetXPos;
-    baseArch.mainOffSetYPos = mainOffSetYPos;
-    
 }
 
 //--------------------------------------------------------------
@@ -307,7 +297,7 @@ vector< ofMesh > ofApp::buildingsMesh(string _fileName){
             ofxJSONElement _coordinateBuilding;
             _coordinateBuilding = _jsonBuilding[j];
             
-            ofVec2f _v;
+            glm::vec3 _v;
             _v.x = _jsonLoader.lon2x(_coordinateBuilding[0].asFloat()) - _rootNode->getX();
             _v.y = _jsonLoader.lat2y(_coordinateBuilding[1].asFloat()) - _rootNode->getY();
             
@@ -362,7 +352,7 @@ vector< ofPolyline > ofApp::roadsPolyline(string _fileName){
                 ofxJSONElement _coordinateRoad;
                 _coordinateRoad = _jsonRoad[j];
                 
-                ofVec2f _v;
+                glm::vec3 _v;
                 _v.x = _jsonLoader.lon2x(_jsonRoad[j][0].asFloat()) - _rootNode->getX();
                 _v.y = _jsonLoader.lat2y(_jsonRoad[j][1].asFloat()) - _rootNode->getY();
                 
@@ -382,7 +372,7 @@ vector< ofPolyline > ofApp::roadsPolyline(string _fileName){
                 ofxJSONElement _coordinateRoad;
                 _coordinateRoad = _jsonRoad[j];
                 
-                ofVec2f _v;
+                glm::vec3 _v;
                 _v.x = _jsonLoader.lon2x(_jsonRoad[j][0].asFloat()) - _rootNode->getX();
                 _v.y = _jsonLoader.lat2y(_jsonRoad[j][1].asFloat()) - _rootNode->getY();
                 

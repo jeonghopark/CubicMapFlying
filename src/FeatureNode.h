@@ -10,6 +10,7 @@
 #define __vectorTileExperiment__FeatureNode__
 
 #include "ofMain.h"
+#include "ofNode.h"
 
 class FeatureNode : public ofNode {
     
