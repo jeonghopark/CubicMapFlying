@@ -1,0 +1,18 @@
+{
+    "folders":
+    [
+        {
+            "path": "."
+        },
+        {
+            "name": "ofxFirstPersonCamera",
+            "path": "../../../openFrameworks/addons/ofxFirstPersonCamera"
+        },
+        {
+            "name": "ofxImmediateModeInput",
+            "path": "../../../openFrameworks/addons/ofxImmediateModeInput"
+        }
+
+
+    ]
+}
