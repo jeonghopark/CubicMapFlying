@@ -11,7 +11,12 @@
         {
             "name": "ofxImmediateModeInput",
             "path": "../../../openFrameworks/addons/ofxImmediateModeInput"
+        },
+        {
+            "name": "openFrameworks",
+            "path": "../../../openFrameworks/libs"
         }
+
 
 
     ]

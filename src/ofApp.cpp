@@ -17,7 +17,10 @@ void ofApp::setup() {
 
     cam.setNearClip(0.0001f);
     cam.setFarClip(10000.0f);
+    // cam.sensitivity = 0.01;
+    // cam.upvector = ofVec3f(0, 1, 0);
     cam.toggleControl();
+    cam.movespeed = 0.1f;
 
 
     buildingsMesh_top = buildingsMesh("vectorTile_16_33975_22294.json");
@@ -113,8 +116,6 @@ void ofApp::draw() {
     //    baseArch.guidePoints();
     //
     //    ofPopMatrix();
-
-
 
 }
 

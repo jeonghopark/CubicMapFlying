@@ -609,6 +609,8 @@
 	},
 	"file_history":
 	[
+		"/Users/jeonghopark/Projects/map_visual/CubicMapFlying/Makefile",
+		"/Users/jeonghopark/Projects/map_visual/CubicMapFlying/src/ofApp.h",
 		"/Users/jeonghopark/openFrameworks_Code/MyExamples_ofVectorTeil/CubicMapFlying/src/ofApp.cpp",
 		"/Users/jeonghopark/openFrameworks_Code/MyExamples_ofVectorTeil/CubicMapFlying/CubicMapFlying.sublime-project",
 		"/Users/jeonghopark/openFrameworks/addons/ofxImmediateModeInput/src/ofxImmediateModeInput.h",
@@ -734,9 +736,7 @@
 		"/Users/jeonghopark/Projects/LED_Fassade/opc/websocket-opc-master/server.js",
 		"/Users/jeonghopark/Projects/LED_Fassade/opc/websockify-master/websockify.py",
 		"/Users/jeonghopark/Projects/LED_Fassade/opc/websockify-master/websockify/websocket.py",
-		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/p5js_sketches/fireImage.js",
-		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/flames_Multi.html",
-		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/p5js_sketches/flames_Multi.js"
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/p5js_sketches/fireImage.js"
 	],
 	"find":
 	{
@@ -754,6 +754,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"keyUp",
 			"drawBuildingsMesh"
 		],
 		"highlight": true,
